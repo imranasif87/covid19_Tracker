@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Covid-19 Tracker App</title>
+    <link href="css/bootstrap-4.3.1.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+<body ng-app="covid-app" onload="ShowMap()">
+    <main class="container-fluid" ng-controller="ctrl-covid">
+        <section class="row">
+            <article class="col-md-5 pr-0">
+                <div class="card main border-left-0">
+                    <div class="card-body">
+                        <h1>Covid-19 Tracker App</h1>
+                        <div class="row summary">
+                            <div class="col-md-4 pr-0">
+                                <div class="card border-left-0 border-right-0 border-top-0 border-warning">
+                                    <div class="card-body">
+                                        <h4>{{confirmed}}</h4>
+                                        <span>Confirmed</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-0 pl-0">
+                                <div class="card border-left-0 border-right-0 border-top-0 border-danger">
+                                    <div class="card-body">
+                                        <h4>{{deaths}}</h4>
+                                        <span>Deaths</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pl-0">
+                                <div class="card border-left-0 border-right-0 border-top-0 border-success">
+                                    <div class="card-body">
+                                        <h4>{{recovered}}</h4>
+                                        <span>Recovered</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <input type="text" ng-model="txtSearch" class="form-control" placeholder="Search for country" />
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <div id="accordion">
+                                    <div class="card" ng-repeat="country  in countries | filter: txtSearch">
+                                        <div ng-click="Search(country)" class="card-header" id="heading{{$index}}">
+                                            <div style="cursor:pointer;" data-toggle="collapse" data-target="#collapse{{$index}}" aria-expanded="true" aria-controls="collapse{{$index}}">
+                                                {{country.Country}}
+                                            </div>
+                                        </div>
+
+                                        <div id="collapse{{$index}}" class="collapse" aria-labelledby="heading{{$index}}" data-parent="#accordion">
+                                            <div class="card-body">
+                                                Confirmed: {{country.TotalConfirmed | number: fractionSize}}<br />
+                                                Death: {{country.TotalDeaths | number: fractionSize}}<br />
+                                                Recovered: {{country.TotalRecovered | number: fractionSize}}<br />
+                                                <!--Active:<br />-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="col-md-7 pl-0 pr-0">
+                <div id="myMap"></div>
+            </article>
+        </section>
+
+        <footer class="row">
+            <span>&copy; 2020 - Covid-19 Tracker App</span>
+        </footer>
+    </main>
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
+    <script src="Scripts/bootstrap-4.3.1.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AnOaryydl-Jd2yCFF8jL91x2YYdv9KxzJNRMfeea8dVaGSZcBGTgKxoaZd8jckDG'></script>
+    <script src="Scripts/Custom.js"></script>
+</body>
+</html>

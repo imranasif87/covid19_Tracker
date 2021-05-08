@@ -1,0 +1,29 @@
+﻿body, html {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Segoe UI', Helvetica Nenu, Helvetica, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.main {
+    height: 94vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align:center;
+    align-content:center;
+    height: 55px;
+}
+
+.summary .card {
+    border-width: 3px;
+}
